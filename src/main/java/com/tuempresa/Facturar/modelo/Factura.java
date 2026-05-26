@@ -2,6 +2,8 @@ package com.tuempresa.Facturar.modelo;
 
 import java.time.*;
 import javax.persistence.*;
+
+import com.tuempresa.Facturar.calculadores.CalcSigNumParaAño;
 import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.*;
 import org.openxava.calculators.*;
@@ -24,4 +26,9 @@ public class Factura {
 
     @TextArea
     String observaciones;
+
+    @Column(length = 6)
+    @DefaultValueCalculator(value= CalcSigNumParaAño.class,
+    properties=@PropertyValue(name="anyo")
+    int numero;
 }
